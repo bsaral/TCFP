@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta CHARSEt=UTF-8>   
+<link rel="stylesheet" type="text/css" href="bootstrap.css" />  
+<title>TC</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>  
+<script type="text/javascript" src="js/messages_tr.js"></script>  
+<script type="text/javascript" src="js/jquery.validate.tcno.js"></script>
+<script type="text/javascript">
+
+
+$().ready(function() {  
+    $("#tcform").validate({
+        rules: {
+            tcno: {
+                required: true,
+                minlength: 11,
+                tcno: true
+            },
+            messages: {
+                tcno: "  Lütfen geçerli bir T.C No girin."
+            }
+        }
+});
+});
+
+var hostname = "http://"+window.location.hostname;
+var numbers = document.URL.match(/\d+/g)+".pdf";
+var url = hostname+window.location.pathname+"pdf/"+numbers;
+  
+
+</script>
+<body>
+<div style = "position:relative;top:200px;left:500px;" >
+	<form name="tcform" id="tcform" class="form-inline"  >	
+	<div class="form-group">
+		 <input type="text" class="form-control" name="tcno" id="tcno" placeholder="TC Kimlik No" style ="width:3.5in;height:40px;"/><br><br>
+		 <script type="text/javascript">
+		 $.ajax({
+	        type: 'HEAD',
+	        url: url,
+	        success: function () {
+	        	window.prompt('PDF bulundu',url);
+	        },
+	        error: function () {
+	            alert("PDF henüz hazırlanmamış");
+	            return false;
+	        }
+	    });
+		 </script>
+		 
+	</div>
+	<br><br><button   class="btn btn-success" /> Tamam </button>
+	
+</form>
+</div>
+</body>
+</html>
