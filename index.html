@@ -44,8 +44,8 @@ $(document).ready(function(){
     			document.getElementById('divsuc').style.display = "block";
     			document.getElementById('diverr').style.display = "none";
     			document.getElementById('divwar').style.display = "none";
-    			yol = window.location.href+"pdf/"+tc+".pdf"
-		        document.getElementById("suc").href = yol;
+    			yol = window.location.pathname+"pdf/"+tc+".pdf"
+		        document.getElementById("suc").href = yerel;
     		}
     		else{
 				document.getElementById('diverr').style.display = "block";
@@ -70,8 +70,11 @@ $(document).ready(function(){
 
 <body>
 <img src="logo.png" style ="position:absolute;top:50px;left:3in;">
-<div style = "position:absolute;top:300px;left:400px;" >
-		
+<img src="yazi.png" style ="position:absolute;top:50px;left:5.3in;">
+<div style = "position:absolute;top:260px;left:500px;" >
+	<div class="alert alert-info" style = "width:400px;">
+		<p> Lütfen 11 Haneli TC Kimlik Numaranızı Giriniz </p>
+	</div><br>
 	<div class="form-group">
 		 <input type="text" class="form-control" name="tcno" id="tcno" placeholder="TC Kimlik No" style ="width:3.5in;height:40px;"/><br>
 		 
@@ -95,13 +98,12 @@ $(document).ready(function(){
 	 
 
 </div>
-<div class="navbar-fixed-bottom" style ="background-color:white">
-        <div class="navbar navbar-inverse" style = "margin-bottom: 10px;;height:40px;background-color:white">
+<div class="navbar-fixed-bottom">
+     <div class=" navbar-inverse" style = "margin-bottom: 0px;height:50px;background-color:#E8E8E8; ">
         <div class="container">
            <ul class="nav pull-right">
-            <li style = "position:absolute;right:2in;width:6in;"><a href="http://uzem.omu.edu.tr/c/">©2013 - Ondokuz Mayıs Üniversitesi, Uzaktan Eğitim Uygulama ve Araştırma Merkezi </a></li>
+            <li style="font-size:13px;position:absolute;right:2in;top:17px" >© 2013 Ondokuz Mayıs Üniversitesi Mühendislik Fakültesi. Her hakkı saklıdır. Bu site bilgisayar mühendisliği koordinatörlüğünde hazırlanmıştır.</li>
           </ul>
-        </div>
       </div>
     </div>
   </div>    
