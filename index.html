@@ -29,41 +29,81 @@ function tc_kimlik(KimlikNo){
 	return true;
 }
 
-function url(tc){
-	var tckimlikno = $(tc).val();
-	if(tc_kimlik(tckimlikno)){
-		var yerel = window.location.pathname+"pdf/"+tckimlikno+".pdf"
-		var http = new XMLHttpRequest();
-		http.open('HEAD', yerel, false);
-		http.send();
-		var x = http.status!=404;
-		if(x == true){
-			window.open(yerel);
-		}
-		else{
-			alert("PDF Henüz Hazır Değil")
-		}
-		
-	}
-	else{
-		alert('Geçersiz TC Kimlik Numarası Girdiniz !') 
-	}
-}
 
+$(document).ready(function(){    
+    $('a#submit').click(function(e) { 
+    	var tckimlikno = document.getElementById('tcno');
+    	tc = tckimlikno.value;
+    	if(tc_kimlik(tc)){
+    		var yerel = window.location.pathname+"pdf/"+tc+".pdf";
+    		var http = new XMLHttpRequest();
+    		http.open('HEAD', yerel, false);
+			http.send();
+			var x = http.status!=404;
+			if(x == true){
+    			document.getElementById('divsuc').style.display = "block";
+    			document.getElementById('diverr').style.display = "none";
+    			document.getElementById('divwar').style.display = "none";
+    			yol = window.location.href+"pdf/"+tc+".pdf"
+		        document.getElementById("suc").href = yol;
+    		}
+    		else{
+				document.getElementById('diverr').style.display = "block";
+				document.getElementById('divsuc').style.display = "none"
+				document.getElementById('divwar').style.display = "none";
+			}
+    	}
+    	else {
+    		document.getElementById('divwar').style.display = "block";
+    		document.getElementById('divsuc').style.display = "none"
+    		document.getElementById('diverr').style.display = "none";
+
+    	}
+    			
+
+    e.preventDefault();
+       
+        
+    });
+  });
 </script>
 
-
 <body>
-<div style = "position:relative;top:200px;left:500px;" >
-	<form name="tcform" id="tcform" class="form-inline">	
+<img src="logo.png" style ="position:absolute;top:50px;left:3in;">
+<div style = "position:absolute;top:300px;left:400px;" >
+		
 	<div class="form-group">
-		 <input type="text" class="form-control" name="tcno" id="tcno" placeholder="TC Kimlik No" style ="width:3.5in;height:40px;"/><br><br>
+		 <input type="text" class="form-control" name="tcno" id="tcno" placeholder="TC Kimlik No" style ="width:3.5in;height:40px;"/><br>
 		 
 		 
 	</div>
-	<br><br><button class="btn btn-success" onclick="url(document.getElementById('tcno'))" /> Tamam </button>
+	
+	<a href="javascript:void(0)" id = "submit" class='btn btn-success'>Gönder</a><br><br>
+
+	<div class="alert alert-success" id ="divsuc" style = "display:none;width:300px;">
+		Öğrenci Belgenizi Buradan <a href="#" id="suc" target ="_blank"> İndirebilirsiniz.</a>
+	</div>
+
+	<div class="alert alert-danger" id ="divwar" style = "display:none;width:300px;">
+		<p> Lütfen Geçerli Bir TC Numarası Giriniz </p>
+	</div>
+
+	<div class="alert alert-danger" id ="diverr" style = "display:none;width:400px;">
+		<p> Lütfen Uzem ile Bağlantıya Geçiniz : <b> 0362 457 89 36 </p>
+	</div>
+	
 	 
-</form>
+
 </div>
+<div class="navbar-fixed-bottom" style ="background-color:white">
+        <div class="navbar navbar-inverse" style = "margin-bottom: 10px;;height:40px;background-color:white">
+        <div class="container">
+           <ul class="nav pull-right">
+            <li style = "position:absolute;right:2in;width:6in;"><a href="http://uzem.omu.edu.tr/c/">©2013 - Ondokuz Mayıs Üniversitesi, Uzaktan Eğitim Uygulama ve Araştırma Merkezi </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>    
 </body>
 </html>
